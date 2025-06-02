@@ -15,15 +15,18 @@ public class EnemyAttack {
         this.x = x;
         this.y = y;
 
-        if (enemyType == 1) {
-            image = new ImageIcon("이미지링크");
-        } 
-        else  {
-            image = new ImageIcon("이미지링크");
-        }
+        // if (enemyType == 1) {
+        //     image = new ImageIcon("이미지링크");
+        // } 
+        // else  {
+        //     image = new ImageIcon("이미지링크");
+        // }
 
-        public void fire() {
+        image = new ImageIcon(getClass().getResource("/image/enemyattack.png")).getImage();
+
+    }
+
+    public void fire() {
             this.y -= 12; //y축 나중에 꼭 확인
         }
-    }
 }
