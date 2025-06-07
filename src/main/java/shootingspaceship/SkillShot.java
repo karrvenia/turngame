@@ -6,12 +6,14 @@ import java.awt.Image;
 public class SkillShot extends Shot {
     private int dmg;
     private Image skillImage;
+    private int targetY;
 
-    public SkillShot(int x, int y, int dmg, Image skillImage) {
+    public SkillShot(int x, int y, int dmg, Image skillImage, int targetY) {
         super(x, y);
         this.dmg = dmg;
 
         this.skillImage = skillImage;
+        this.targetY = targetY;
     }
 
     public int getDmg() {

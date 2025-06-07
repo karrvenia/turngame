@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author wgpak
  */
-public class Enemy {
+public abstract class Enemy extends GameUnit {
 
     protected float x_pos;
     protected float y_pos;
@@ -22,7 +22,7 @@ public class Enemy {
     protected float delta_y_inc;
     protected final int collision_distance = 10;
 
-    public Enemy(int x, int y, float delta_x, float delta_y, int max_x, int max_y, float delta_y_inc) {
+    public Enemy(int x, int y, float delta_x, float delta_y, int max_x, int max_y, float delta_y_inc, Team team) {
         x_pos = x;
         y_pos = y;
         this.delta_x = delta_x;
@@ -30,6 +30,7 @@ public class Enemy {
         this.max_x = max_x;
         this.max_y = max_y;
         this.delta_y_inc = delta_y_inc;
+        this.team = team;
     }
 
     public void move() {

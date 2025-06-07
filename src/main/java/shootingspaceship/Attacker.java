@@ -13,7 +13,7 @@ public class Attacker extends Player {
     protected Image skillImage;
 
     public Attacker(int x, int y, int min_x, int max_x, int atkDmg, int skillDmg) {
-        super(x, y, min_x, max_x);
+        super(x, y, min_x, max_x,2700);
         this.atkDmg = atkDmg;
         this.skillDmg = skillDmg;
         this.skillAvailable = true;
@@ -38,11 +38,22 @@ public class Attacker extends Player {
         return new PlayerShot(x_pos, y_pos, atkDmg);
     }
 
-    public SkillShot useSkillShot() {
-        if(!skillAvailable) return null;
+    // public SkillShot useSkillShot() {
+    //     if(!skillAvailable) return null;
+    //     skillAvailable = false;
+        
+    //     return new SkillShot(x_pos, y_pos, skillDmg, skillImage, target.getY());
+    // }
+
+    public SkillShot useSkillShot(Enemy target) {
+        if(!skillAvailable || target ==null){
+            return null;
+        } 
         skillAvailable = false;
         
-        return new SkillShot(x_pos, y_pos, skillDmg, skillImage);
+        target.takeDamage(skillDmg); //스킬데미지 적용용
+
+        return new SkillShot(x_pos, y_pos, skillDmg, skillImage, target.getY());
     }
 
     public void resetSkill() {
@@ -55,5 +66,9 @@ public class Attacker extends Player {
         , y_pos, null); 
     }
 
+    @Override
+    public void takeTurn() {
+        Enemy target = GameManager.getInstance().selectEnemy();
+    }
     
 }

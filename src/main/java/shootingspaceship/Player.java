@@ -13,19 +13,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class Player {
+public abstract class Player extends GameUnit {
     protected int x_pos;
     protected int y_pos;
     protected int min_x;
     protected int max_x;
 
-    protected int hp;
-
-    public Player(int x, int y, int min_x, int max_x) {
+    public Player(int x, int y, int min_x, int max_x, int hp, Team team) {
         x_pos = x;
         y_pos = y;
         this.min_x = min_x;
         this.max_x = max_x;
+        this.hp = hp; //gameunit 상속
+        this.team = team;
     }
 
     public void moveX(int speed) {
@@ -53,11 +53,6 @@ public class Player {
         int[] x_poly = {x_pos, x_pos - 10, x_pos, x_pos + 10};
         int[] y_poly = {y_pos, y_pos + 15, y_pos + 10, y_pos + 15};
         g.fillPolygon(x_poly, y_poly, 4);
-    }
-
-    public void takeDamage(int dmg) {
-        hp -= dmg;
-        if (hp<=0) System.out.print("사망");
     }
 }
 
